@@ -5,11 +5,11 @@ import { LeftZoneComponent } from './components/left-zone/left-zone.component';
 import { RightZoneComponent } from './components/right-zone/right-zone.component';
 import { HeaderComponent } from './components/header/header.component';
 import {DescriptionTaskService} from './services/description-task.service';
-import {NotificationService} from './services/notification.service';
 import {RunCodeService} from './services/run-code.service';
 import {Button} from 'primeng/button';
 import {DropdownModule} from 'primeng/dropdown';
 import {IftaLabel} from 'primeng/iftalabel';
+import {Card} from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -23,13 +23,13 @@ import {IftaLabel} from 'primeng/iftalabel';
     Button,
     DropdownModule,
     IftaLabel,
+    Card,
   ],
   exports: [
     CardTaskComponent,
   ],
   providers: [
     DescriptionTaskService,
-    NotificationService,
     RunCodeService,
   ]
 })
