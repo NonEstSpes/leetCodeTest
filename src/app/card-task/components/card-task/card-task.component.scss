@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+}
+
+.left-zone {
+  margin-left: 50px;
+}
+
+.right-zone {
+  margin-right: 50px;
+}

@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  position: absolute;
+  right: 50px;
+  left: 50%;
+  border: 1px solid darkgreen;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.editor {
+  width: 717px;
+  height: 500px;
+  border: 1px solid blue;
+  border-radius: 8px;
+}
+
+.run {
+  position: absolute;
+  right: 0;
+}

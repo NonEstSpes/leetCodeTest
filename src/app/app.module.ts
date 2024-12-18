@@ -1,12 +1,13 @@
 import {NgModule, provideExperimentalZonelessChangeDetection} from '@angular/core';
-import {BrowserModule, platformBrowser} from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import Lara from '@primeng/themes/lara';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {CardTaskComponent} from './card-task/components/card-task/card-task.component';
 import {CardTaskModule} from './card-task/card-task.module';
+import {providePrimeNG} from 'primeng/config';
 
-//platformBrowser().bootstrapModule(AppModule);
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +17,15 @@ import {CardTaskModule} from './card-task/card-task.module';
     AppRoutingModule,
     CardTaskModule,
   ],
-  providers: [provideExperimentalZonelessChangeDetection()],
+  providers: [
+    provideExperimentalZonelessChangeDetection(),
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: Lara,
+      }
+    })
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
