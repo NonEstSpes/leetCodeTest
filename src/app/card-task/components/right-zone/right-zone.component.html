@@ -1,8 +1,19 @@
 <div class="container">
   <div>
-    <p-dropdown></p-dropdown>
-    <p-dropdown></p-dropdown>
-    <p-button class="run"></p-button>
+    <p-dropdown
+      [options]="(descriptionTaskService.currentTasks$ | async)?.languages"
+      optionLabel="name"
+      optionValue="code"
+      (onChange)="setLanguage($event.value)"
+      placeholder="Выберите язык"
+    />
+    <p-dropdown
+      [options]="configThemEditor"
+      optionLabel="name"
+      optionValue="code"
+      (onChange)="setTheme($event.value)"
+    />
+    <p-button class="run">Run</p-button>
   </div>
   <div #editor class="editor"></div>
   <div>
@@ -12,3 +23,4 @@
     </p-iftalabel>
   </div>
 </div>
+

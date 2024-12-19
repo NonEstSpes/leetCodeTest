@@ -10,6 +10,7 @@ import {Button} from 'primeng/button';
 import {DropdownModule} from 'primeng/dropdown';
 import {IftaLabel} from 'primeng/iftalabel';
 import {Card} from 'primeng/card';
+import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {Card} from 'primeng/card';
     DropdownModule,
     IftaLabel,
     Card,
+    HttpClientModule,
   ],
   exports: [
     CardTaskComponent,
@@ -31,6 +33,7 @@ import {Card} from 'primeng/card';
   providers: [
     DescriptionTaskService,
     RunCodeService,
+    HttpClient,
   ]
 })
 export class CardTaskModule { }

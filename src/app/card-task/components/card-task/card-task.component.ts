@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {DescriptionTaskService} from '../../services/description-task.service';
 
 @Component({
   selector: 'app-card-task',
@@ -7,5 +8,11 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardTaskComponent {
+
+  constructor(
+    public descriptionTaskService: DescriptionTaskService,
+  ) {
+    this.descriptionTaskService.getTaskById(1)
+  }
 
 }
