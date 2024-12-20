@@ -37,10 +37,6 @@ jobs:
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-      - name: Run json-server
-        uses: jcy0308/simple-server-monitoring-action@1.0.1
-        with: 
-            filename: db.json
 
   # Deployment job
   deploy:
