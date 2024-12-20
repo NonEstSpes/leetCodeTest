@@ -56,7 +56,6 @@ export class RunCodeService {
     const headers = new HttpHeaders({
       ...this.clientSecret
     })
-    return this.http.get<Request>(url, {headers}).pipe(tap(res =>
-      console.log('result: ', res, 'count: ', this.count++, 'requst:', this.request$)))
+    return this.http.get<Request>(url, {headers})
   }
 }
