@@ -1,12 +1,14 @@
 {
   "name": "leet-code-test",
   "version": "0.0.0",
+  "homepage": "https://nonestspes.github.io/leetCodeTest",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve && json-server -w db.json",
+    "build": "ng build --configuration production && json-server -w -h nonestspes.github.io/leetCodeTest db.json",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --configuration production --base-href https://nonestspes.github.io/leetCodeTest"
   },
   "private": true,
   "dependencies": {

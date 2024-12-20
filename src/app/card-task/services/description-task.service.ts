@@ -3,7 +3,7 @@ import {map, mergeMap, Observable} from 'rxjs';
 import {Tasks} from '../type/IDictionaryLanguge';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-const URL = 'http://localhost:3000';
+const URL = 'https://nonestspes.github.io:3000/leetCodeTest';
 
 @Injectable({
   providedIn: 'root'

@@ -23,6 +23,11 @@ concurrency:
 
 jobs:
   # Build job
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
   build:
     runs-on: ubuntu-latest
     steps:
@@ -37,6 +42,29 @@ jobs:
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+      - name: Use Node.js $
+        uses: actions/setup-node@v4.1.0
+        with:
+          node-version: $
+      - name: Cache node modules
+        id: cache-nodemodules
+        uses: actions/cache@v4.2.0
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install Dependencies
+        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+        run: npm ci
+      - name: Build
+        run: npm run build --
+      - name: Lint
+        run: npm run lint
 
   # Deployment job
   deploy:
