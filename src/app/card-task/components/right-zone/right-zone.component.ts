@@ -53,12 +53,5 @@ export class RightZoneComponent implements AfterViewInit {
   run() {
     const aceEditor = ace.edit(this.editor?.nativeElement);
     this.runCodeService.runCode(aceEditor.session.getValue(), this.currentLanguage)
-    this.runCodeService.request$.subscribe(
-      request => {
-        if(request.request_status.code == 'REQUEST_QUEUED') {
-          this.runCodeService.statusUpdate(request.status_update_url);
-        }
-      }
-    )
   }
 }

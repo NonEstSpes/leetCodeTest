@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, mergeMap, Observable, tap} from 'rxjs';
 import {LanguageForApi, Request, RunStatus} from '../type/IDictionaryLanguge';
 
 @Injectable({
@@ -30,6 +30,10 @@ export class RunCodeService {
         callback: "http://egorbo6a.beget.tech/"
     }
     this.request$ = this.http.post<Request>(`${this.apiUrl}`, body, {headers})
+      .pipe(
+        mergeMap(request => this.statusUpdate(request.status_update_url)),
+        tap()
+      )
   }
 
   public getOutput(url: string | undefined) {
@@ -40,12 +44,11 @@ export class RunCodeService {
     return this.http.get(url, {headers})
   }
 
-  public statusUpdate(url: string | undefined) {
-    if (!url) return
+  public statusUpdate(url: string) {
     const headers = new HttpHeaders({
       ...this.clientSecret
     })
     console.log(url)
-    this.request$ = this.http.get<Request>(url, {headers})
+    return this.http.get<Request>(url, {headers})
   }
 }

@@ -21,7 +21,9 @@
       <code>Status: {{request?.result?.compile_status || 'none run'}}</code>
       <code [lang]="currentLanguage">
         Output: {{
-          runCodeService.getOutput(request.result.run_status.output) | async
+          request.result.run_status.output != null ?
+            (runCodeService.getOutput(request.result.run_status.output) | async)
+            : request.result.compile_status
         }}
       </code>
     </div>
