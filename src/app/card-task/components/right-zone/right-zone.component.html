@@ -13,14 +13,18 @@
       optionValue="code"
       (onChange)="setTheme($event.value)"
     />
-    <p-button class="run">Run</p-button>
+    <p-button class="run" (onClick)="run()">Run</p-button>
   </div>
   <div #editor class="editor"></div>
-  <div>
-    <p-iftalabel>
-      <textarea pTextarea id="description"  rows="5" cols="30" style="resize: none"></textarea>
-      <label for="description">Description</label>
-    </p-iftalabel>
-  </div>
+  <p-panel header="Time limit: 5  memory limit: 243232" class="output">
+    <div *ngIf="(runCodeService.request$ | async) as request">
+      <code>Status: {{request?.result?.compile_status || 'none run'}}</code>
+      <code [lang]="currentLanguage">
+        Output: {{
+          runCodeService.getOutput(request.result.run_status.output) | async
+        }}
+      </code>
+    </div>
+  </p-panel>
 </div>
 

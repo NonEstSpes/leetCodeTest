@@ -12,7 +12,7 @@ export class CardTaskComponent {
   constructor(
     public descriptionTaskService: DescriptionTaskService,
   ) {
-    this.descriptionTaskService.getTaskById(1)
+    this.descriptionTaskService.getTaskById(0)
   }
 
 }

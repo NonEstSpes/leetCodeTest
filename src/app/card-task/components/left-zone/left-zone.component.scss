@@ -1,7 +1,10 @@
 .container {
   display: flex;
   left: 50px;
-  border: 1px solid darkgreen;
   flex-direction: column;
   gap: 10px;
+  &__title {
+    border: 1px solid var(--p-emerald-900);
+    border-radius: 8px;
+  }
 }

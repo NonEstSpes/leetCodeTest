@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {map, Observable} from 'rxjs';
-import {Tasks} from '../type/type';
+import {Tasks} from '../type/IDictionaryLanguge';
 import {HttpClient} from '@angular/common/http';
 
 const URL = 'http://localhost:3000';

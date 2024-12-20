@@ -1,13 +1,13 @@
 <div class="container"
      *ngIf="(descriptionTaskService.currentTasks$ | async) as tasks"
 >
-  <p-card [header]="tasks.title">
+  <p-card [header]="tasks.title" class="container__title">
     <h3>Описание</h3>
     <p class="m-0">
       {{ tasks.description }}
     </p>
   </p-card>
-  <p-card header="Пример">
+  <p-card header="Пример" class="container__title">
     <code class="m-0">
       {{ tasks.example }}
     </code>

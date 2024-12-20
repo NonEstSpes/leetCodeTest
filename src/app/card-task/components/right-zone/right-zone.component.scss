@@ -1,7 +1,6 @@
 .container {
   display: flex;
   right: 50px;
-  border: 1px solid darkgreen;
   flex-direction: column;
   gap: 10px;
 }
@@ -9,6 +8,20 @@
 .editor {
   width: 717px;
   height: 500px;
-  border: 1px solid blue;
+  border: 1px solid var(--p-emerald-900);
   border-radius: 8px;
+}
+
+.output {
+  max-width: 717px;
+  border-radius: 8px;
+  border: 1px solid var(--p-emerald-900);
+  &__error {
+    border: 1px solid var(--p-red-500);
+    border-radius: 8px;
+  }
+  &__success {
+    border: 1px solid var(--p-emerald-400);
+    border-radius: 8px;
+  }
 }

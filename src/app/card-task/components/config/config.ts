@@ -1,4 +1,4 @@
-import {IDropdown} from '../../type/type';
+import {IDropdown} from '../../type/IDictionaryLanguge';
 
 export const configThemEditor: IDropdown[] = [
   {name: "Github", code: "github_dark"},

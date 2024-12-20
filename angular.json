@@ -39,7 +39,6 @@
                 "input": "./node_modules/ace-builds/src-min-noconflict",
                 "output": "/ace/"
               }
-
             ],
             "styles": [
               "src/styles.scss"

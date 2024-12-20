@@ -8,6 +8,8 @@ import {
 import * as ace from 'ace-builds';
 import {DescriptionTaskService} from '../../services/description-task.service';
 import {configThemEditor} from '../config/config';
+import {RunCodeService} from '../../services/run-code.service';
+import {RunStatus} from '../../type/IDictionaryLanguge';
 
 @Component({
   selector: 'app-right-zone',
@@ -18,9 +20,11 @@ import {configThemEditor} from '../config/config';
 export class RightZoneComponent implements AfterViewInit {
   @ViewChild("editor") private editor: ElementRef<HTMLElement> | undefined;
   public readonly configThemEditor = configThemEditor
+  public currentLanguage: string = 'python'
 
   constructor(
     public descriptionTaskService: DescriptionTaskService,
+    public runCodeService: RunCodeService,
   ) { }
 
   ngAfterViewInit(): void {
@@ -30,9 +34,9 @@ export class RightZoneComponent implements AfterViewInit {
     );
     const aceEditor = ace.edit(this.editor?.nativeElement);
     aceEditor.setOptions({ fontSize: "14px" });
-    aceEditor.session.setValue("<h1>Ace Editor works great in Angular!</h1>");
+    aceEditor.session.setValue("print('hello')");
     aceEditor.setTheme("ace/theme/twilight");
-    aceEditor.session.setMode("ace/mode/html");
+    aceEditor.session.setMode("ace/mode/python");
   };
 
   setTheme(theme: string): void {
@@ -41,7 +45,20 @@ export class RightZoneComponent implements AfterViewInit {
   }
 
   setLanguage(language: string): void {
+     this.currentLanguage = language;
      const aceEditor = ace.edit(this.editor?.nativeElement);
      aceEditor.session.setMode(`ace/mode/${language}`);
+  }
+
+  run() {
+    const aceEditor = ace.edit(this.editor?.nativeElement);
+    this.runCodeService.runCode(aceEditor.session.getValue(), this.currentLanguage)
+    this.runCodeService.request$.subscribe(
+      request => {
+        if(request.request_status.code == 'REQUEST_QUEUED') {
+          this.runCodeService.statusUpdate(request.status_update_url);
+        }
+      }
+    )
   }
 }
