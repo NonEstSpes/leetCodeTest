@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {map, Observable} from 'rxjs';
+import {map, mergeMap, Observable} from 'rxjs';
 import {Tasks} from '../type/IDictionaryLanguge';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 const URL = 'http://localhost:3000';
 
@@ -18,8 +18,27 @@ export class DescriptionTaskService {
   }
 
   public getTaskById(taskId: number): void {
-    this.currentTasks$ = this.http.get<Tasks[]>(`${URL}/tasks/`, {params: {id: taskId}}).pipe(
+    this.currentTasks$ = this.http.get<Tasks[]>(`${URL}/tasks`, {params: {id: taskId}}).pipe(
       map((tasks: Tasks[]) => tasks[0])
     );
+  }
+
+  public updateSolved() {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+    });
+
+    this.currentTasks$.pipe(
+      mergeMap(res => {
+          return this.http.patch(`${URL}/tasks/${0}/`,
+            {
+              ...res,
+              isSolved: true
+            },
+            {headers}
+          )
+        }
+      )
+    ).subscribe()
   }
 }

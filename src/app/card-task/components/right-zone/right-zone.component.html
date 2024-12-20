@@ -16,8 +16,13 @@
     <p-button class="run" (onClick)="run()">Run</p-button>
   </div>
   <div #editor class="editor"></div>
-  <p-panel header="Time limit: 5  memory limit: 243232" class="output">
-    <div *ngIf="(runCodeService.request$ | async) as request">
+  <p-panel
+    header="Time limit: 5  memory limit: 243232"
+    class="output"
+    *ngIf="(runCodeService.request$ | async) as request"
+    [className]="request.result.run_status.output ? 'output__success' : 'output__error'"
+  >
+    <div >
       <code>Status: {{request?.result?.compile_status || 'none run'}}</code>
       <code [lang]="currentLanguage">
         Output: {{
@@ -25,6 +30,8 @@
             (runCodeService.getOutput(request.result.run_status.output) | async)
             : request.result.compile_status
         }}
+        Memory Used: {{request.result.run_status.memory_used}}
+        Time Used: {{request.result.run_status.time_used}}
       </code>
     </div>
   </p-panel>

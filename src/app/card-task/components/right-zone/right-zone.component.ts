@@ -19,6 +19,7 @@ import {RunStatus} from '../../type/IDictionaryLanguge';
 })
 export class RightZoneComponent implements AfterViewInit {
   @ViewChild("editor") private editor: ElementRef<HTMLElement> | undefined;
+  @ViewChild("panel") private panel?: ElementRef;
   public readonly configThemEditor = configThemEditor
   public currentLanguage: string = 'python'
 
@@ -53,5 +54,12 @@ export class RightZoneComponent implements AfterViewInit {
   run() {
     const aceEditor = ace.edit(this.editor?.nativeElement);
     this.runCodeService.runCode(aceEditor.session.getValue(), this.currentLanguage)
+    this.runCodeService.request$.subscribe(
+      request => {
+        if (request.result.compile_status == 'OK') {
+          this.descriptionTaskService.updateSolved()
+        }
+      }
+    )
   }
 }

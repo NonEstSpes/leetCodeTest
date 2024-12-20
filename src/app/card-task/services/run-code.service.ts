@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, mergeMap, Observable, tap} from 'rxjs';
-import {LanguageForApi, Request, RunStatus} from '../type/IDictionaryLanguge';
+import {BehaviorSubject, delay, mergeMap, Observable, tap} from 'rxjs';
+import {LanguageForApi, Request} from '../type/IDictionaryLanguge';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ export class RunCodeService {
   private apiUrl: string = 'https://api.hackerearth.com/v4/partner/code-evaluation/submissions/';
   public request$: Observable<Request> = new Observable<Request>();
   private clientSecret = {"client-secret": '6de7b2bdc836e9547b7fe823404a339907272751'}
+  count = 0
 
   constructor(private http: HttpClient) { }
 
@@ -31,8 +32,15 @@ export class RunCodeService {
     }
     this.request$ = this.http.post<Request>(`${this.apiUrl}`, body, {headers})
       .pipe(
-        mergeMap(request => this.statusUpdate(request.status_update_url)),
-        tap()
+        delay(500),
+        mergeMap(request =>
+          {
+            if(request.request_status.code == 'REQUEST_QUEUED') {
+              return this.statusUpdate(request.status_update_url)
+            }
+            return this.request$
+          }
+        )
       )
   }
 
@@ -48,7 +56,7 @@ export class RunCodeService {
     const headers = new HttpHeaders({
       ...this.clientSecret
     })
-    console.log(url)
-    return this.http.get<Request>(url, {headers})
+    return this.http.get<Request>(url, {headers}).pipe(tap(res =>
+      console.log('result: ', res, 'count: ', this.count++, 'requst:', this.request$)))
   }
 }

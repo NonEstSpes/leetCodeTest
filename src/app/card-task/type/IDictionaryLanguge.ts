@@ -5,7 +5,8 @@ export interface Tasks {
   languages: IDropdown[],
   example: string;
   memory_limit: number,
-  time_limit: number
+  time_limit: number,
+  isSolved: boolean;
 }
 
 export interface IDropdown {
