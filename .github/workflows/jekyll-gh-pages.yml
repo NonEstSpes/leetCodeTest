@@ -37,7 +37,7 @@ jobs:
       - name: Install Dependencies
         run: npm i
       - name: Build
-        run: ng build && json-server -w db.json
+        run: npm run build && json-server -w db.json
 
   # Deployment job
   deploy:
