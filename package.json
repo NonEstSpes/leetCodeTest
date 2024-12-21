@@ -1,7 +1,6 @@
 {
   "name": "leet-code-test",
   "version": "0.0.0",
-  "homepage": "https://nonestspes.github.io/leetCodeTest",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
