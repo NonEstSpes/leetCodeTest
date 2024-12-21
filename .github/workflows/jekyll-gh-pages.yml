@@ -37,7 +37,7 @@ jobs:
       - name: Install Dependencies
         run: npm i
       - name: Build
-        run: npm run build && json-server -w db.json
+        run: npm run build
 
   # Deployment job
   deploy:
@@ -52,4 +52,6 @@ jobs:
         with:
           branch: gh-pages # Ветка, куда будут отправлены файлы статического сайта
           folder: dist/leet-code-test # Путь к папке с собранным проектом
+      - name: run json-server
+        run: json-server -w db.json
 
