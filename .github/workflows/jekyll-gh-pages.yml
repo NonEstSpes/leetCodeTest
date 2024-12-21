@@ -40,8 +40,14 @@ jobs:
         with:
           branch: gh-pages # Ветка, куда будут отправлены файлы статического сайта
           folder: dist/leet-code-test # Путь к папке с собранным проектом
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          user_name: 'NonEstSpes' # Ваше имя
+          user_email: 'egor.bobilev2016@yandex.ru' # Ваш email
+          commit_message: 'Deploy to GitHub Pages'
+
       - name: install json-server
         run: npm install -g json-server 
       - name: run json-server
         run: json-server -w db.json &
+      
 
