@@ -50,10 +50,10 @@ jobs:
     needs: build
     steps:
       - name: Deploy to GitHub Pages
-        uses: leetCodeTest/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages # Ветка, куда будут отправлены файлы статического сайта
-          folder: dist/leet-code-test # Путь к папке с собранным проектом
+          branch: gh-pages
+          folder: dist/leet-code-test
       - name: run json-server
         run: json-server -w db.json
 
