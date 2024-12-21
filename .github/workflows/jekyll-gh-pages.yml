@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: dist/leet-code-test
+          path: dist/leet-code-test/browser
 
       - name: Download artifacts
         if: always()
@@ -39,7 +39,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages # Ветка, куда будут отправлены файлы статического сайта
-          folder: dist/leet-code-test # Путь к папке с собранным проектом
+          folder: dist/leet-code-test/browser # Путь к папке с собранным проектом
           github_token: ${{ secrets.GITHUB_TOKEN }}
           user_name: 'NonEstSpes' # Ваше имя
           user_email: 'egor.bobilev2016@yandex.ru' # Ваш email
