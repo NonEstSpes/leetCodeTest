@@ -48,7 +48,6 @@ jobs:
     needs: build
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/github-pages-deploy-action@v4
         with:
           branch: gh-pages # Ветка, куда будут отправлены файлы статического сайта
           folder: dist/leet-code-test # Путь к папке с собранным проектом
