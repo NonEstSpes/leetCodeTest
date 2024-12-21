@@ -41,7 +41,7 @@ jobs:
           branch: gh-pages # Ветка, куда будут отправлены файлы статического сайта
           folder: dist/leet-code-test # Путь к папке с собранным проектом
       - name: install json-server
-        run: npm install -g json-server
+        run: npm install -g json-server 
       - name: run json-server
-        run: json-server -w db.json
+        run: json-server -w db.json &
 
