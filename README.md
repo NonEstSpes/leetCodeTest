@@ -1,5 +1,11 @@
 # LeetCodeTest
 
+Одно из тестовых заданий, сделать подобие leet code
+
+В данном репозитории реализованна лишь одна страница - решения задачи
+Для дальнейшего расширения можно добавить модуль списка - где будут через GET запрос получаться все доступные задачи
+На этот список можно добавить фильтры
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
 
 ## Development server
